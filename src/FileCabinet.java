@@ -15,7 +15,7 @@ public class FileCabinet {
 
     public void startApp () {
         // Create frame
-        JFrame frame = new JFrame("Steepy Ecommerce");
+        JFrame frame = new JFrame("File Cabinet");
         frame.setLayout(new GridLayout(10, 1));
         frame.setSize(500, 600);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
