@@ -3,10 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Stack;
 
 public class FileCabinet {
 
-    Stack stack = new Stack();
+    Stack<String[]> stack = new Stack<>();
 
     public static void main(String[] args) {
         FileCabinet fileCabApp = new FileCabinet();
@@ -16,8 +17,8 @@ public class FileCabinet {
     public void startApp () {
         // Create frame
         JFrame frame = new JFrame("File Cabinet");
-        frame.setLayout(new GridLayout(10, 1));
-        frame.setSize(500, 600);
+        frame.setLayout(new GridLayout(8, 2));
+        frame.setSize(500, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Create Labels and text fields
@@ -37,6 +38,8 @@ public class FileCabinet {
         JButton addButton = new JButton("Add To Cabinet");
         JButton removeButton = new JButton("Remove Last File");
         JButton viewLastButton = new JButton("View Last File");
+        JButton printAllFilesButton = new JButton("Print All Files");
+        JButton searchButton = new JButton("Search");
 
         // Add to frame
         frame.add(nameLabel);
@@ -50,11 +53,13 @@ public class FileCabinet {
         frame.add(addButton);
         frame.add(removeButton);
         frame.add(viewLastButton);
+        frame.add(printAllFilesButton);
+        frame.add(searchButton);
 
         // Set frame visibility to true
         frame.setVisible(true);
 
-        // Add Button Functionalities
+        // Add file to the Stack
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,6 +82,7 @@ public class FileCabinet {
             }
         });
 
+        // Remove from Stack
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -90,6 +96,7 @@ public class FileCabinet {
             }
         });
 
+        // View last added file to the Stack
         viewLastButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,5 +109,38 @@ public class FileCabinet {
                 }
             }
         });
+
+        // Print all the files in the Stack
+        printAllFilesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("\nAll Files: ");
+                for (int i = 0; i < stack.size(); i++) {
+                    System.out.println(Arrays.toString( stack.get(i) ));
+                }
+            }
+        });
+
+        // Search for a file in a Stack
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Check if the name of the file to be searched for was inputed
+                // if it wasn't show message for user to enter it
+                if (name.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "You need to enter a `NAME` for the search.");
+                    return;
+                }
+                for (int i = 0; i < stack.size(); i++) {
+                    if (stack.get(i)[0].equalsIgnoreCase( name.getText() )) {
+                        JOptionPane.showMessageDialog(null, "Search Result: " + Arrays.toString(stack.get(i)));
+                        return;
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Search Result: No such record");
+            }
+        });
+
+
     }
 }
