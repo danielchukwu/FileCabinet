@@ -14,22 +14,23 @@ public class FileCabinet {
     }
 
     public void startApp () {
-        // Frame Setup
+        // Create frame
         JFrame frame = new JFrame("Steepy Ecommerce");
         frame.setLayout(new GridLayout(10, 1));
         frame.setSize(500, 600);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        // Labels
+        // Create Labels and text fields
         JLabel nameLabel = new JLabel("name");
-        JLabel emailLabel = new JLabel("email");
-        JLabel phoneNumberLabel = new JLabel("phone number");
-        JLabel homeAddressLabel = new JLabel("home address");
-
-        // TexFields
         JTextField name = new JTextField();
+
+        JLabel emailLabel = new JLabel("email");
         JTextField email = new JTextField();
+
+        JLabel phoneNumberLabel = new JLabel("phone number");
         JTextField phoneNumber = new JTextField();
+
+        JLabel homeAddressLabel = new JLabel("home address");
         JTextField homeAddress = new JTextField();
 
         // Buttons
@@ -37,7 +38,7 @@ public class FileCabinet {
         JButton removeButton = new JButton("Remove Last File");
         JButton viewLastButton = new JButton("View Last File");
 
-        // Add
+        // Add to frame
         frame.add(nameLabel);
         frame.add(name);
         frame.add(emailLabel);
